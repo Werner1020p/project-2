@@ -1,16 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Defines the character set so text displays correctly -->
     <meta charset="UTF-8">
+
+    <!-- Makes the page responsive on phones, tablets, and laptops -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Visualization Project</title>
+
+    <!-- The title that appears in the browser tab -->
+    <title>QuakeScope</title>
+
+    <!-- Connects our custom CSS file -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Add any external javascript libraries here with a <script> tag -->
-    
+    <!-- Leaflet CSS: This is needed so the interactive map displays correctly -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
+
 <body>
-    
+
+    <!-- TOP HEADER SECTION: This introduces the project -->
+    <header class="topbar">
+        <div class="topbar-text">
+            <!-- Main project title -->
+            <h1>QuakeScope</h1>
+
+            <!-- Short description of what the site does -->
+            <p>Explore recent earthquakes with live government data from the USGS.</p>
+        </div>
+    </header>
+
+    <!-- STATS SECTION: These boxes will show quick information -->
+    <section class="stats">
+
+        <!-- Stat card 1: total number of earthquake events -->
+        <div class="stat-card">
+            <span class="stat-label">Total Events</span>
+            <!-- JavaScript will update this number -->
+            <h2 id="totalCount">0</h2>
+        </div>
+
+        <!-- Stat card 2: strongest earthquake magnitude -->
+        <div class="stat-card">
+            <span class="stat-label">Strongest Quake</span>
+            <!-- JavaScript will update this number -->
+            <h2 id="maxMag">0.0</h2>
+        </div>
+
+        <!-- Stat card 3: average magnitude -->
+        <div class="stat-card">
+            <span class="stat-label">Average Magnitude</span>
+            <!-- JavaScript will update this number -->
+            <h2 id="avgMag">0.0</h2>
+        </div>
+    </section>
+
+    <!-- CONTROLS SECTION: This is where the user interacts with the data -->
+    <section class="controls">
+
+        <!-- Search bar: lets the user search earthquakes by place -->
+        <input type="text" id="searchInput" placeholder="Search by place...">
+
+        <!-- Magnitude filter: lets the user filter earthquakes by minimum magnitude -->
+        <select id="magnitudeFilter">
+            <option value="0">All magnitudes</option>
+            <option value="1">1.0+</option>
+            <option value="2.5" selected>2.5+</option>
+            <option value="4">4.0+</option>
+            <option value="5">5.0+</option>
+        </select>
+
+        <!-- Sort dropdown: lets the user organize results in different ways -->
+        <select id="sortSelect">
+            <option value="recent">Most recent</option>
+            <option value="oldest">Oldest</option>
+            <option value="strongest">Strongest</option>
+            <option value="weakest">Weakest</option>
+        </select>
+
+        <!-- Reset button: clears filters and returns to default view -->
+        <button id="resetBtn">Reset</button>
+    </section>
+
+    <!-- MAIN DASHBOARD SECTION: This is the core of the webpage -->
+    <main class="dashboard">
+
+        <!-- MAP PANEL: this is where the Leaflet map will appear -->
+        <section class="map-panel">
+            <h2>Earthquake Map</h2>
+
+            <!-- Empty div for the map. Leaflet uses this container to draw the map -->
+            <div id="map"></div>
+        </section>
+
+        <!-- LIST PANEL: this shows earthquake events in a readable list -->
+        <aside class="list-panel">
+            <h2>Recent Events</h2>
+
+            <!-- Empty list: JavaScript will insert earthquake items here -->
+            <ul id="quakeList"></ul>
+
+            <!-- Pagination controls: lets the user move through the list page by page -->
+            <div class="pagination">
+                <button id="prevBtn">Prev</button>
+                <span id="pageInfo">Page 1</span>
+                <button id="nextBtn">Next</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- CHART SECTION: This will show a chart of the earthquake data -->
+    <section class="chart-panel">
+        <h2>Magnitude Distribution</h2>
+
+        <!-- Canvas element: Chart.js will draw the graph here -->
+        <canvas id="quakeChart"></canvas>
+    </section>
+
+    <!-- Status message: gives feedback like loading data or error messages -->
+    <p id="statusMessage" class="status">Loading earthquake data...</p>
+
+    <!-- EXTERNAL JAVASCRIPT LIBRARIES: These must load before our script.js -->
+
+    <!-- Leaflet JS: this powers the interactive map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Chart.js: this powers the data chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Our own JavaScript file: this is where the project logic will go -->
     <script src="script.js"></script>
 </body>
+
 </html>

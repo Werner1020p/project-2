@@ -1,0 +1,291 @@
+/* Removes default browser spacing and makes sizing easier to control */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY STYLING: Main background, font, and text color */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0f172a;
+    color: #f8fafc;
+    line-height: 1.5;
+}
+
+/* TOP HEADER / TOPBAR: Holds the title and short intro */
+.topbar {
+    background: #111827;
+    border-bottom: 1px solid #334155;
+    padding: 24px 20px;
+}
+
+/* Limits the width of the top text
+   so it doesn’t stretch too much */
+.topbar-text {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Main site title */
+.topbar h1 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+/* Short subtitle / description */
+.topbar p {
+    color: #cbd5e1;
+    font-size: 1rem;
+}
+
+/* STATS SECTION: 3 cards showing quick numbers */
+.stats {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    padding: 0 20px;
+
+    /* Grid makes the 3 stat cards line up nicely */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+/* Each stat card box */
+.stat-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* Small label above the number */
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 8px;
+}
+
+/* Big stat number */
+.stat-card h2 {
+    font-size: 1.9rem;
+    color: #ffffff;
+}
+
+/* CONTROLS SECTION: Search, filters, sort, reset */
+.controls {
+    max-width: 1200px;
+    margin: 20px auto 0;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 12px;
+}
+
+/* Shared styling for form controls */
+.controls input,
+.controls select,
+.controls button {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: #f8fafc;
+    font-size: 0.95rem;
+}
+
+/* Search box placeholder color */
+.controls input::placeholder {
+    color: #94a3b8;
+}
+
+/* Button cursor so it feels clickable */
+.controls button {
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Hover effect for reset button */
+.controls button:hover {
+    background: #334155;
+}
+
+/* MAIN DASHBOARD: Map on the left, list on the right
+   ========================= */
+.dashboard {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+/* Shared panel style for map and list */
+.map-panel,
+.list-panel,
+.chart-panel {
+    background: #111827;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Panel headings */
+.map-panel h2,
+.list-panel h2,
+.chart-panel h2 {
+    font-size: 1.1rem;
+    padding: 16px;
+    border-bottom: 1px solid #334155;
+    color: #ffffff;
+}
+
+/* LEAFLET MAP CONTAINER: Very important: the map MUST have a height or it won't show */
+#map {
+    width: 100%;
+    height: 520px;
+}
+
+/* LIST PANEL: Earthquake event list */
+.list-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+/* The list itself */
+#quakeList {
+    list-style: none;
+    max-height: 455px;
+    overflow-y: auto;
+}
+
+/* Each earthquake item */
+#quakeList li {
+    padding: 14px 16px;
+    border-bottom: 1px solid #1e293b;
+}
+
+/* Removes border from the last item */
+#quakeList li:last-child {
+    border-bottom: none;
+}
+
+/* Styles for the place name inside list items
+   We’ll use this class in JavaScript */
+.quake-place {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+/* Styles for the small meta info like magnitude/time
+   We’ll use this class in JavaScript */
+.quake-meta {
+    display: block;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin-bottom: 2px;
+}
+
+/* PAGINATION: Prev / Next buttons + page number */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 16px;
+    border-top: 1px solid #334155;
+}
+
+/* Pagination buttons */
+.pagination button {
+    padding: 8px 12px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: #f8fafc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Hover effect */
+.pagination button:hover {
+    background: #334155;
+}
+
+/* Disabled button style */
+.pagination button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* CHART PANEL: Bottom chart section */
+.chart-panel {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    padding: 0 20px 20px;
+}
+
+/* Adds spacing around the chart area */
+.chart-panel canvas {
+    padding: 16px;
+}
+
+/* STATUS MESSAGE: For loading text or error text */
+.status {
+    max-width: 1200px;
+    margin: 16px auto 30px;
+    padding: 0 20px;
+    color: #93c5fd;
+    font-size: 0.95rem;
+}
+
+/* RESPONSIVE DESIGN: Makes layout stack nicely on smaller screens */
+@media (max-width: 900px) {
+
+    /* Stack stat cards vertically on smaller screens */
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stack filters vertically */
+    .controls {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stack map and list vertically */
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    /* Reduce map height a bit for tablets/phones */
+    #map {
+        height: 380px;
+    }
+}
+
+/* Extra small screen improvements */
+@media (max-width: 600px) {
+    .topbar h1 {
+        font-size: 1.8rem;
+    }
+
+    .stat-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .map-panel h2,
+    .list-panel h2,
+    .chart-panel h2 {
+        font-size: 1rem;
+    }
+}
