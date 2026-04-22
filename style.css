@@ -1,291 +1,412 @@
-/* Removes default browser spacing and makes sizing easier to control */
+/* =========================
+   GLOBAL RESET
+========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* BODY STYLING: Main background, font, and text color */
+:root {
+    --bg: #020617;
+    --bg-secondary: #0f172a;
+    --panel: rgba(15, 23, 42, 0.82);
+    --panel-solid: #111827;
+    --card: rgba(30, 41, 59, 0.72);
+    --border: rgba(148, 163, 184, 0.18);
+    --border-strong: rgba(148, 163, 184, 0.28);
+    --text: #f8fafc;
+    --muted: #cbd5e1;
+    --soft: #94a3b8;
+    --accent: #38bdf8;
+    --accent-strong: #0ea5e9;
+    --danger: #ef4444;
+    --warning: #f97316;
+    --highlight: #facc15;
+    --shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+}
+
+/* =========================
+   BODY
+========================= */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #0f172a;
-    color: #f8fafc;
+    color: var(--text);
     line-height: 1.5;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(239, 68, 68, 0.08), transparent 24%),
+        linear-gradient(180deg, #020617 0%, #0b1120 45%, #020617 100%);
 }
 
-/* TOP HEADER / TOPBAR: Holds the title and short intro */
+/* =========================
+   TOPBAR
+========================= */
 .topbar {
-    background: #111827;
-    border-bottom: 1px solid #334155;
-    padding: 24px 20px;
+    position: relative;
+    padding: 56px 20px 34px;
+    border-bottom: 1px solid var(--border);
+    background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(17, 24, 39, 0.9)),
+        radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.1), transparent 25%);
+    overflow: hidden;
 }
 
-/* Limits the width of the top text
-   so it doesn’t stretch too much */
+.topbar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to right, transparent 0%, rgba(56, 189, 248, 0.06) 50%, transparent 100%);
+    pointer-events: none;
+}
+
 .topbar-text {
+    position: relative;
     max-width: 1200px;
     margin: 0 auto;
+    z-index: 1;
 }
 
-/* Main site title */
 .topbar h1 {
-    font-size: 2.2rem;
-    margin-bottom: 8px;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: -0.04em;
+    margin-bottom: 10px;
+    font-weight: 800;
     color: #ffffff;
 }
 
-/* Short subtitle / description */
 .topbar p {
-    color: #cbd5e1;
-    font-size: 1rem;
+    max-width: 700px;
+    color: var(--muted);
+    font-size: 1.05rem;
 }
 
-/* STATS SECTION: 3 cards showing quick numbers */
+/* =========================
+   STATS
+========================= */
 .stats {
     max-width: 1200px;
-    margin: 24px auto 0;
+    margin: 28px auto 0;
     padding: 0 20px;
-
-    /* Grid makes the 3 stat cards line up nicely */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 18px;
 }
 
-/* Each stat card box */
 .stat-card {
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 14px;
-    padding: 18px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.92));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 22px 20px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
-/* Small label above the number */
+.stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.42);
+}
+
 .stat-label {
     display: block;
-    font-size: 0.9rem;
-    color: #94a3b8;
-    margin-bottom: 8px;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-bottom: 10px;
 }
 
-/* Big stat number */
 .stat-card h2 {
-    font-size: 1.9rem;
+    font-size: clamp(1.9rem, 3vw, 2.5rem);
+    font-weight: 800;
     color: #ffffff;
 }
 
-/* CONTROLS SECTION: Search, filters, sort, reset */
+/* =========================
+   CONTROLS
+========================= */
 .controls {
     max-width: 1200px;
-    margin: 20px auto 0;
+    margin: 22px auto 0;
     padding: 0 20px;
-
     display: grid;
     grid-template-columns: 2fr 1fr 1fr auto;
-    gap: 12px;
+    gap: 14px;
 }
 
-/* Shared styling for form controls */
 .controls input,
 .controls select,
 .controls button {
-    padding: 12px 14px;
-    border-radius: 10px;
-    border: 1px solid #334155;
-    background: #1e293b;
-    color: #f8fafc;
-    font-size: 0.95rem;
+    width: 100%;
+    padding: 13px 15px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: rgba(15, 23, 42, 0.88);
+    color: var(--text);
+    font-size: 0.96rem;
+    transition: border-color 0.2s ease, transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
 }
 
-/* Search box placeholder color */
 .controls input::placeholder {
-    color: #94a3b8;
+    color: var(--soft);
 }
 
-/* Button cursor so it feels clickable */
+.controls input:focus,
+.controls select:focus {
+    outline: none;
+    border-color: rgba(56, 189, 248, 0.65);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+}
+
 .controls button {
     cursor: pointer;
-    transition: 0.2s ease;
+    background: linear-gradient(180deg, #1d4ed8, #0f766e);
+    border: none;
+    font-weight: 700;
+    min-width: 120px;
 }
 
-/* Hover effect for reset button */
 .controls button:hover {
-    background: #334155;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(15, 118, 110, 0.25);
 }
 
-/* MAIN DASHBOARD: Map on the left, list on the right
-   ========================= */
+.controls button:active {
+    transform: translateY(0);
+}
+
+/* =========================
+   DASHBOARD
+========================= */
 .dashboard {
     max-width: 1200px;
-    margin: 24px auto 0;
+    margin: 26px auto 0;
     padding: 0 20px;
-
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 20px;
+    gap: 22px;
 }
 
-/* Shared panel style for map and list */
 .map-panel,
 .list-panel,
 .chart-panel {
-    background: #111827;
-    border: 1px solid #334155;
-    border-radius: 16px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
 }
 
-/* Panel headings */
 .map-panel h2,
 .list-panel h2,
 .chart-panel h2 {
-    font-size: 1.1rem;
-    padding: 16px;
-    border-bottom: 1px solid #334155;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 18px 18px 16px;
+    border-bottom: 1px solid var(--border);
     color: #ffffff;
+    background: rgba(255, 255, 255, 0.02);
+    letter-spacing: 0.01em;
 }
 
-/* LEAFLET MAP CONTAINER: Very important: the map MUST have a height or it won't show */
+/* =========================
+   MAP
+========================= */
 #map {
     width: 100%;
-    height: 520px;
+    height: 540px;
+    filter: saturate(1.05) contrast(1.02);
 }
 
-/* LIST PANEL: Earthquake event list */
+/* =========================
+   LIST PANEL
+========================= */
 .list-panel {
     display: flex;
     flex-direction: column;
+    min-height: 540px;
 }
 
-/* The list itself */
 #quakeList {
     list-style: none;
-    max-height: 455px;
+    flex: 1;
     overflow-y: auto;
 }
 
-/* Each earthquake item */
 #quakeList li {
-    padding: 14px 16px;
-    border-bottom: 1px solid #1e293b;
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.65);
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-/* Removes border from the last item */
+#quakeList li:hover {
+    background: rgba(56, 189, 248, 0.06);
+}
+
 #quakeList li:last-child {
     border-bottom: none;
 }
 
-/* Styles for the place name inside list items
-   We’ll use this class in JavaScript */
 .quake-place {
     display: block;
-    font-weight: bold;
-    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 7px;
     color: #ffffff;
 }
 
-/* Styles for the small meta info like magnitude/time
-   We’ll use this class in JavaScript */
 .quake-meta {
     display: block;
     font-size: 0.9rem;
-    color: #cbd5e1;
-    margin-bottom: 2px;
+    color: var(--muted);
+    margin-bottom: 3px;
 }
 
-/* PAGINATION: Prev / Next buttons + page number */
+/* =========================
+   PAGINATION
+========================= */
 .pagination {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-
     padding: 14px 16px;
-    border-top: 1px solid #334155;
+    border-top: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.02);
 }
 
-/* Pagination buttons */
 .pagination button {
-    padding: 8px 12px;
-    border: 1px solid #334155;
+    padding: 9px 14px;
+    border: 1px solid var(--border-strong);
     background: #1e293b;
-    color: #f8fafc;
-    border-radius: 8px;
+    color: var(--text);
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: background 0.2s ease, transform 0.18s ease, opacity 0.2s ease;
+    font-weight: 600;
 }
 
-/* Hover effect */
-.pagination button:hover {
+.pagination button:hover:not(:disabled) {
     background: #334155;
+    transform: translateY(-1px);
 }
 
-/* Disabled button style */
 .pagination button:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
 
-/* CHART PANEL: Bottom chart section */
+#pageInfo {
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+/* =========================
+   CHART PANEL
+========================= */
 .chart-panel {
     max-width: 1200px;
     margin: 24px auto 0;
     padding: 0 20px 20px;
 }
 
-/* Adds spacing around the chart area */
 .chart-panel canvas {
-    padding: 16px;
+    padding: 18px 8px 4px;
 }
 
-/* STATUS MESSAGE: For loading text or error text */
+/* =========================
+   STATUS
+========================= */
 .status {
     max-width: 1200px;
-    margin: 16px auto 30px;
+    margin: 18px auto 34px;
     padding: 0 20px;
-    color: #93c5fd;
+    color: #7dd3fc;
     font-size: 0.95rem;
 }
 
-/* RESPONSIVE DESIGN: Makes layout stack nicely on smaller screens */
-@media (max-width: 900px) {
+/* =========================
+   SCROLLBAR
+========================= */
+#quakeList::-webkit-scrollbar {
+    width: 10px;
+}
 
-    /* Stack stat cards vertically on smaller screens */
+#quakeList::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.75);
+}
+
+#quakeList::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 999px;
+}
+
+#quakeList::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
     .stats {
         grid-template-columns: 1fr;
     }
 
-    /* Stack filters vertically */
     .controls {
         grid-template-columns: 1fr;
     }
 
-    /* Stack map and list vertically */
     .dashboard {
         grid-template-columns: 1fr;
     }
 
-    /* Reduce map height a bit for tablets/phones */
     #map {
-        height: 380px;
+        height: 400px;
+    }
+
+    .list-panel {
+        min-height: auto;
     }
 }
 
-/* Extra small screen improvements */
 @media (max-width: 600px) {
+    .topbar {
+        padding: 40px 16px 28px;
+    }
+
     .topbar h1 {
-        font-size: 1.8rem;
+        font-size: 2.1rem;
+    }
+
+    .topbar p {
+        font-size: 0.95rem;
     }
 
     .stat-card h2 {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
 
     .map-panel h2,
     .list-panel h2,
     .chart-panel h2 {
-        font-size: 1rem;
+        font-size: 0.98rem;
+    }
+
+    #map {
+        height: 340px;
+    }
+
+    #quakeList li {
+        padding: 14px 15px;
     }
 }

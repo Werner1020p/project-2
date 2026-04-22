@@ -2,7 +2,7 @@
 
 ## Team members
 
-- Add all the names of all the team members
+- Werner, Daniel, Terence 
 
 ## Live Demo
 
