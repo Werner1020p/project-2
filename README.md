@@ -38,4 +38,11 @@
 
 ## Credits
 
-- U.S. Geological Survey (USGS) Earthquake Catalog; Fetch API; Leaflet.js 
+- [USGS Earthquake Catalog API / GeoJSON Feeds — The Primary Data Source](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php?) 
+
+- [Vanilla HTML + CSS + JavaScript — The Foundation of the Project](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API?) 
+
+- [Leaflet — for the interactive map](https://leafletjs.com/examples/quick-start/?)
+
+- [Chart.js — for the supporting chart](https://www.chartjs.org/docs/latest/getting-started/?)
+(https://www.chartjs.org/)
