@@ -2,34 +2,40 @@
 
 ## Team members
 
-- Werner, Daniel, Terence 
+- Werner
+- Daniel
+- Terence
 
 ## Live Demo
 
-- Include a link to the live version of the project hosted on Render.
+- (https://github.com/Werner1020p/project-2)
 
 ## Project Overview
 
-- Briefly describe the purpose of the project.
-- Explain what live data set was used, and what you hope users would learn about the data set by using your project
+- This project provides a real-time window into global seismic activity. Utilizing the USGS Advanced National Seismic System (ComCat), we process over 20,000 events through live GeoJSON feeds to provide a definitive, up-to-the-minute record of earthquakes worldwide. 
+- By interacting with our dashboard, users can visualize the immediate impact of seismic events. The platform translates complex raw data—such as magnitude, depth, tsunami potential, and alert status—into an intuitive geographic and analytical experience. 
 
 ## Features
 
-- List all (at least 3) distinct types of user interaction, such as filtering, sorting, modifying data views, or changing the data presentation.
+- Interactive Global Mapping: Navigate an updated map of recent seismic events with custom markers.
+- Dynamic Data Filtering: Sort through thousands of events by magnitude, date, or alert level to find specific trends.
+- Real-Time Analytics: toggle between different data to visualize coordinates and Tsunami risk instantly.
 
 ## Technologies Used
 
 - List the technologies and tools used in the project:
-    - **Languages**: HTML, CSS, JavaScript
-    - **Libraries**: (e.g., GSAP for animations)
-    - **APIs**: Public APIs where the data set comes from
-    - **Other**: Figma for design, Adobe Illustrator for illustrations, OpenAI for A.I. generated assets, etc.
+    - **Languages**: Vanilla HTML, CSS, JavaScript
+    - **Libraries**: Charts.js for Data visualization; Leaflet.js for geopatial mapping.
+    - **APIs**: Fetch API for real-tim USGS integration
+    - **Other**: Figma for design
 
 ## Future Enhancements
 
-- List any features you would’ve liked to add if given more time
+- Push Notifications: for real-time browser alerts for high-magnitude events.
+- Historical Comparison: a hostoric timeline to compare past and present disasters.
+- Advanced Heatmaps: To sho density layers to identify seismic areas.
 
 ## Credits
 
-- List any third-party assets used in the project (e.g., sound effects, images, fonts) and provide proper attribution.
+- U.S. Geological Survey (USGS) Earthquake Catalog; Fetch API; Leaflet.js
 - Acknowledge any resources, tutorials, or references you used to help complete the project.
