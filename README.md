@@ -34,7 +34,7 @@
 
 - Push Notifications: for real time browser alerts for high magnitude events.
 - Historical Comparison: a hostoric timeline to compare past and present disasters.
-- Advanced Heatmaps: To sho density layers to identify seismic areas.
+- Advanced Heatmaps: To show density layers to identify seismic areas.
 
 ## Credits
 
